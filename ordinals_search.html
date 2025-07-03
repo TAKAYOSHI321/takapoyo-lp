@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordinals Inscription 検索</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        input[type="number"] {
+            width: 250px;
+            padding: 10px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ordinals Inscription 番号検索</h1>
+        <p>inscription番号を入力して検索ボタンを押してください。</p>
+        <div>
+            <input type="number" id="inscriptionNumber" placeholder="例: 12345" onkeydown="if(event.key==='Enter') searchOrdinal()">
+            <button onclick="searchOrdinal()">検索</button>
+        </div>
+    </div>
+
+    <script>
+        function searchOrdinal() {
+            const number = document.getElementById('inscriptionNumber').value;
+            if (number) {
+                const url = `https://ordinals.com/inscription/${number}`;
+                window.open(url, '_blank');
+            } else {
+                alert('inscription番号を入力してください。');
+            }
+        }
+    </script>
+
+</body>
+</html>
