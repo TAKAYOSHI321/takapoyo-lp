@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Ordinals Inscription 検索</title>
     <style>
         body {
@@ -55,22 +56,30 @@
     <div class="container">
         <h1>Ordinals Inscription 番号検索</h1>
         <p>inscription番号を入力して検索ボタンを押してください。</p>
-        <div>
-            <input type="number" id="inscriptionNumber" placeholder="例: 12345" onkeydown="if(event.key==='Enter') searchOrdinal()">
-            <button onclick="searchOrdinal()">検索</button>
-        </div>
+        <form id="searchForm">
+            <input type="number" id="inscriptionNumber" placeholder="例: 12345" required>
+            <button type="submit">検索</button>
+        </form>
     </div>
 
     <script>
-        function searchOrdinal() {
-            const number = document.getElementById('inscriptionNumber').value;
-            if (number) {
-                const url = `https://ordinals.com/inscription/${number}`;
-                window.open(url, '_blank');
-            } else {
-                alert('inscription番号を入力してください。');
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchForm = document.getElementById('searchForm');
+            
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // フォームのデフォルトの送信を停止
+                    const numberInput = document.getElementById('inscriptionNumber');
+                    const number = numberInput.value;
+                    if (number) {
+                        const url = 'https://ordinals.com/inscription/' + number;
+                        window.open(url, '_blank');
+                    } else {
+                        alert('inscription番号を入力してください。');
+                    }
+                });
             }
-        }
+        });
     </script>
 
 </body>
